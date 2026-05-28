@@ -1,123 +1,638 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles.css" />
-    <title>Portfolio</title>
-  </head>
-  <body>
-    <!-- HEADER -->
-    <header>
-      <div class="header-wrapper">
-        <h3>🔥 Yamlekha Tuyib</h3>
-        <nav>
-          <a href="#contact">
-            <button>Contact me</button>
-          </a>
-        </nav>
-      </div>
-    </header>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yamlekha Tuyib — Design Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
 
-    <!-- HERO -->
-    <div class="hero">
-      <div>
-        <img class="profile-img" src="./assets/Yamlekha profilepic.jpg" />
-      </div>
-      <h1>Hello, This is Yamlekha👋</h1>
-      <p>
-        I am a MERN Developer looking for an SDE role with over a year of
-        experience in HTML/CSS and JavaScript, and a year of experience with the
-        React.js framework. Additionally, I have hands-on experience with
-        MongoDB, Express.js, and Node.js, completing the MERN stack. Ready to
-        contribute innovative solutions and drive impactful development
-        projects.
+:root {
+  --bg:       #0e0e0e;
+  --bg2:      #161616;
+  --bg3:      #1e1e1e;
+  --border:   rgba(255,255,255,0.08);
+  --accent:   #e8611a;
+  --accent2:  #f0832e;
+  --text:     #f0ede8;
+  --muted:    #888;
+  --faint:    #444;
+  --white:    #ffffff;
+  --radius:   6px;
+  --ff-head:  'Bebas Neue', sans-serif;
+  --ff-body:  'Outfit', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--ff-body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 4vw; height: 64px;
+  background: rgba(14,14,14,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--ff-head);
+  font-size: 1.5rem; letter-spacing: 0.06em;
+  color: var(--text);
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* ── HERO ── */
+#home {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 80px 4vw 0;
+  position: relative; overflow: hidden;
+}
+.hero-bg-text {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--ff-head);
+  font-size: clamp(8rem, 20vw, 18rem);
+  color: rgba(255,255,255,0.025);
+  white-space: nowrap;
+  user-select: none; pointer-events: none;
+  letter-spacing: 0.04em;
+}
+.hero-inner {
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  gap: 4rem; align-items: center;
+  position: relative; z-index: 1;
+}
+.hero-eyebrow {
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); font-weight: 500; margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-eyebrow::before {
+  content: ''; display: block;
+  width: 40px; height: 1px; background: var(--accent);
+}
+h1.hero-name {
+  font-family: var(--ff-head);
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  line-height: 0.95; letter-spacing: 0.03em;
+  color: var(--text); margin-bottom: 1rem;
+}
+h1.hero-name em { color: var(--accent); font-style: normal; }
+.hero-subtitle {
+  font-size: 1rem; font-weight: 300;
+  color: var(--muted); margin-bottom: 2rem;
+  max-width: 460px; line-height: 1.8;
+}
+.hero-subtitle strong { color: var(--text); font-weight: 500; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: #fff;
+  padding: 0.75rem 1.75rem; border-radius: var(--radius);
+  font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--text);
+  border: 1px solid var(--faint);
+  padding: 0.75rem 1.75rem; border-radius: var(--radius);
+  font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+/* hero right: info cards */
+.hero-cards { display: flex; flex-direction: column; gap: 1rem; }
+.info-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.info-card-icon {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(232,97,26,0.12);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.info-card-icon svg { width: 18px; height: 18px; fill: var(--accent); }
+.info-card-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.info-card-value { font-size: 14px; font-weight: 500; color: var(--text); margin-top: 2px; }
+
+/* ── SECTION BASE ── */
+section { padding: 6rem 4vw; }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-head { margin-bottom: 3.5rem; }
+.s-eyebrow {
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); font-weight: 500;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 0.75rem;
+}
+.s-eyebrow::after { content: ''; flex: 1 0 40px; max-width: 60px; height: 1px; background: var(--accent); }
+h2.s-title {
+  font-family: var(--ff-head);
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0.04em; color: var(--text);
+  line-height: 1;
+}
+
+/* ── ABOUT ── */
+#about { background: var(--bg2); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.about-body { font-size: 0.97rem; color: #aaa; line-height: 1.9; }
+.about-body p + p { margin-top: 1.1rem; }
+.about-body strong { color: var(--text); font-weight: 500; }
+
+/* timeline */
+.timeline { display: flex; flex-direction: column; }
+.tl-item {
+  display: grid; grid-template-columns: 20px 1fr;
+  gap: 0 1.25rem; position: relative;
+}
+.tl-track {
+  display: flex; flex-direction: column; align-items: center;
+}
+.tl-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  border: 2px solid var(--faint);
+  background: var(--bg2); flex-shrink: 0;
+  margin-top: 5px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.tl-item:hover .tl-dot { border-color: var(--accent); background: var(--accent); }
+.tl-line { flex: 1; width: 1px; background: var(--border); margin: 6px 0; }
+.tl-item:last-child .tl-line { display: none; }
+.tl-content { padding-bottom: 2rem; }
+.tl-period { font-size: 11px; letter-spacing: 0.1em; color: var(--accent); font-weight: 500; text-transform: uppercase; margin-bottom: 4px; }
+.tl-role { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.4; }
+.tl-org { font-size: 13px; color: var(--accent2); margin: 2px 0; }
+.tl-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-top: 6px; }
+
+/* ── SKILLS ── */
+#skills { background: var(--bg); }
+.skills-top { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.skill-group-title { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+.skill-bar-item { margin-bottom: 1rem; }
+.skill-bar-label { display: flex; justify-content: space-between; font-size: 13px; color: var(--text); margin-bottom: 6px; }
+.skill-bar-pct { color: var(--muted); }
+.skill-bar-track { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.skill-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; transition: width 1s ease; }
+
+.skills-tags-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.skill-tag-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; }
+.skill-tag-card-title { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 0.75rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 12px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 3px; color: var(--muted); background: var(--bg3); }
+
+/* ── WHAT I OFFER ── */
+#offer { background: var(--bg2); }
+.offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+.offer-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  transition: border-color 0.25s, transform 0.2s;
+}
+.offer-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+.offer-icon {
+  width: 48px; height: 48px;
+  background: rgba(232,97,26,0.1);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.1rem;
+}
+.offer-icon svg { width: 22px; height: 22px; fill: var(--accent); }
+.offer-card h4 { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; }
+.offer-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+/* ── CONTACT ── */
+#footer { background: var(--bg); }
+.contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; }
+.contact-body { font-size: 0.97rem; color: var(--muted); line-height: 1.85; }
+.contact-links { display: flex; flex-direction: column; gap: 1rem; }
+.c-link {
+  display: flex; align-items: center; gap: 1rem;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem 1.25rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.c-link:hover { border-color: var(--accent); background: var(--bg3); }
+.c-link-icon {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(232,97,26,0.12);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.c-link-icon svg { width: 16px; height: 16px; fill: var(--accent); }
+.c-link-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.c-link-value { font-size: 13px; font-weight: 400; color: var(--text); margin-top: 2px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 4vw;
+  text-align: center;
+  font-size: 12px; color: var(--faint);
+  letter-spacing: 0.05em;
+}
+
+/* ── DIVIDER ── */
+.section-divider {
+  width: 60px; height: 3px;
+  background: var(--accent);
+  margin: 2rem 0;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow  { animation: fadeUp 0.6s 0.1s both; }
+h1.hero-name   { animation: fadeUp 0.6s 0.2s both; }
+.hero-subtitle { animation: fadeUp 0.6s 0.3s both; }
+.hero-btns     { animation: fadeUp 0.6s 0.4s both; }
+.hero-cards    { animation: fadeUp 0.6s 0.35s both; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .hero-inner, .about-grid, .skills-top, .contact-grid { grid-template-columns: 1fr; }
+  .hero-cards { flex-direction: row; flex-wrap: wrap; }
+  .info-card  { flex: 1 1 200px; }
+  section { padding: 4rem 5vw; }
+  nav { padding: 0 5vw; }
+  .nav-links { gap: 1.25rem; }
+}
+@media (max-width: 520px) {
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">Y.<span>Tuyib</span></a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#offer">Expertise</a></li>
+    <li><a href="#footer">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-text">DESIGN</div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Design Engineer</div>
+      <h1 class="hero-name">I am<br><em>Yamlekha</em><br>Tuyib</h1>
+      <p class="hero-subtitle">
+        <strong>BIW Fixture & SPM Design Specialist</strong> with hands-on automotive
+        industry experience. Precision-driven engineering solutions built in SolidWorks.
       </p>
-    </div>
-
-    <!-- ABOUT -->
-    <div class="about">
-      <div class="about-wrapper">
-        <div class="col">
-          <h2>About</h2>
-          <p>
-            As a versatile full-stack developer, I specialize in crafting
-            seamless user experiences with a focus on front-end development
-            using React.js and Redux. I bring dynamic interactivity to web
-            applications, ensuring they are both engaging and efficient. My
-            expertise extends across the entire MERN stack, encompassing
-            MongoDB, Express.js, React.js, and Node.js, enabling me to build
-            robust and scalable systems from end to end.<br />
-            My portfolio showcases a diverse range of projects, each
-            demonstrating my ability to seamlessly integrate these technologies
-            to deliver comprehensive and efficient solutions.
-          </p>
-        </div>
-        <br /><br />
-        <div class="skills col">
-          <h2>My Skills</h2>
-          <ul>
-            <li>HTML</li>
-            <li>CSS Tailwind</li>
-            <li>JavaScript</li>
-            <li>React</li>
-            <li>Redux ToolKit</li>
-            <li>ExpressJS</li>
-            <li>NodeJS</li>
-            <li>MongoDB</li>
-            <li>MySql</li>
-            <li>Firebase</li>
-          </ul>
-        </div>
+      <div class="hero-btns">
+        <a href="#about" class="btn-primary">Explore my journey →</a>
+        <a href="#footer" class="btn-outline">Get in touch</a>
       </div>
     </div>
-
-    <!-- PROJECTS -->
-    <div class="projects">
-      <div class="project-wrapper">
-        <h2>My Projects</h2>
-        <ul>
-          <li>
-            <a href="https://frontend-eight-sepia.vercel.app/">
-              <img src="./assets/projects/E-Commerce.png" />
-              <p>Project #1</p>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img src="./assets/projects/2.png" />
-              <p>Project #2</p>
-            </a>
-          </li>
-          <li>
-            <a href="https://firebase-contact-hub.vercel.app/">
-              <img src="./assets/projects/FireBaseContactHu.png" />
-              <p>Project #3</p>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- SOCIALS -->
-    <div class="socials" id="contact">
-      <div class="socials-wrapper">
+    <div class="hero-cards">
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
         <div>
-          <h2>Contact Me</h2>
-          <p>Email Id: tuyibyamlekha@gmail.com</p>
+          <div class="info-card-label">Based in</div>
+          <div class="info-card-value">J&K, India</div>
         </div>
-        <div class="social-icons">
-          <a href="https://github.com/Yamlekha"
-            ><img src="./assets/github.svg"
-          /></a>
-          <a href="https://www.linkedin.com/in/yamlekha/"
-            ><img src="./assets/linkedin.svg"
-          /></a>
-          <a href="#"><img src="./assets/twitter.svg" /></a>
-          <a href="#"><img src="./assets/mail.svg" /></a>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.05 15.96 0 13.5 0c-1.33 0-2.51.54-3.36 1.4L9 2.96 7.86 1.4C7.01.54 5.83 0 4.5 0 2.04 0 0 2.05 0 4.64c0 .48.11.92.18 1.36H0v2h20V6zm-7.5-4c1.24 0 2 .82 2 1.64 0 .63-.28 1.12-.56 1.36H12V3.36c.24-.22.5-.36.5-.36s0 0 0 0z"/><path d="M0 8v14h9v-5h2v5h9V8H0z"/></svg>
+        </div>
+        <div>
+          <div class="info-card-label">Qualification</div>
+          <div class="info-card-value">B.Tech Mechanical Eng.</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93C9.33 17.79 7 14.5 7 11V7.18L12 5z"/></svg>
+        </div>
+        <div>
+          <div class="info-card-label">Specialisation</div>
+          <div class="info-card-value">BIW Fixtures & SPM</div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+        </div>
+        <div>
+          <div class="info-card-label">Experience</div>
+          <div class="info-card-value">3+ Years Engineering</div>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="s-eyebrow">My story</div>
+      <h2 class="s-title">About Me</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>
+          I completed a <strong>B.Tech in Mechanical Engineering in 2019</strong>. Following graduation, I worked as a <strong>Maintenance Engineer in the automotive industry from 2021 to 2023</strong>, gaining extensive hands-on exposure to two-wheelers, their components, maintenance requirements, and industrial operations.
+        </p>
+        <p>
+          In <strong>2024</strong>, I pursued a <strong>6-month Diploma through CDAC (Centre for Development of Advanced Computing)</strong>, covering CAD tools such as SolidWorks, PLC programming, Python, and databases including MongoDB and SQL.
+        </p>
+        <p>
+          Building on this foundation, I transitioned into design engineering in <strong>2025</strong>. I currently work as a <strong>Design Engineer specialising in automotive BIW fixtures and advanced SPM design</strong>, with SolidWorks as my primary design software.
+        </p>
+        <p>
+          This journey reflects my adaptability, continuous learning mindset, and ability to successfully <strong>transition across different engineering domains</strong>.
+        </p>
+        <div class="section-divider"></div>
+        <p style="font-size:13px; color: var(--muted);">
+          <strong style="color:var(--text)">From:</strong> J&K, India &nbsp;·&nbsp;
+          <strong style="color:var(--text)">Degree:</strong> B.Tech Mechanical Engineering &nbsp;·&nbsp;
+          <strong style="color:var(--text)">Graduated:</strong> 2019
+        </p>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-track"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-period">2019</div>
+            <div class="tl-role">B.Tech — Mechanical Engineering</div>
+            <div class="tl-org">Graduated</div>
+            <div class="tl-desc">Core mechanical principles, engineering fundamentals, design & manufacturing basics.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-track"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-period">2021 – 2023</div>
+            <div class="tl-role">Maintenance Engineer</div>
+            <div class="tl-org">Automotive Industry (Two-Wheelers)</div>
+            <div class="tl-desc">2 years hands-on experience with two-wheeler components, maintenance requirements, and industrial operations.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-track"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-period">2024</div>
+            <div class="tl-role">6-Month Diploma in Technical Skills</div>
+            <div class="tl-org">CDAC — Centre for Development of Advanced Computing</div>
+            <div class="tl-desc">SolidWorks CAD, PLC programming, Python, MongoDB & SQL.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-track"><div class="tl-dot" style="border-color:var(--accent);background:var(--accent)"></div><div class="tl-line"></div></div>
+          <div class="tl-content">
+            <div class="tl-period">2025 – Present</div>
+            <div class="tl-role">Design Engineer</div>
+            <div class="tl-org">BIW Fixtures & Advanced SPM Design</div>
+            <div class="tl-desc">Specialising in automotive Body-in-White fixture design and Special Purpose Machine design using SolidWorks.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-head">
+      <div class="s-eyebrow">Capabilities</div>
+      <h2 class="s-title">My Skills</h2>
+    </div>
+
+    <!-- Skill bars -->
+    <div class="skills-top">
+      <div>
+        <div class="skill-group-title">Design & CAD</div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label"><span>SolidWorks</span><span class="skill-bar-pct">95%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label"><span>BIW Fixture Design</span><span class="skill-bar-pct">90%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label"><span>SPM Design</span><span class="skill-bar-pct">85%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label"><span>GD&T / Technical Drawings</span><span class="skill-bar-pct">80%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Industrial & Automation</div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label"><span>PLC Programming</span><span class="skill-bar-pct">75%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label"><span>Automotive Maintenance</span><span class="skill-bar-pct">90%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label"><span>Python</span><span class="skill-bar-pct">65%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-label"><span>SQL / MongoDB</span><span class="skill-bar-pct">60%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:60%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tag groups -->
+    <div class="skills-tags-grid">
+      <div class="skill-tag-card">
+        <div class="skill-tag-card-title">Design Software</div>
+        <div class="tags">
+          <span class="tag">SolidWorks</span>
+          <span class="tag">CAD Modelling</span>
+          <span class="tag">Assembly Design</span>
+        </div>
+      </div>
+      <div class="skill-tag-card">
+        <div class="skill-tag-card-title">Engineering Domains</div>
+        <div class="tags">
+          <span class="tag">BIW Fixtures</span>
+          <span class="tag">SPM Design</span>
+          <span class="tag">Jig & Fixture</span>
+        </div>
+      </div>
+      <div class="skill-tag-card">
+        <div class="skill-tag-card-title">Automation & Industry</div>
+        <div class="tags">
+          <span class="tag">PLC Programming</span>
+          <span class="tag">Two-Wheeler Systems</span>
+          <span class="tag">Industrial Ops</span>
+        </div>
+      </div>
+      <div class="skill-tag-card">
+        <div class="skill-tag-card-title">Technical & Data</div>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">SQL</span>
+          <span class="tag">CDAC Certified</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I OFFER -->
+<section id="offer">
+  <div class="container">
+    <div class="section-head">
+      <div class="s-eyebrow">Value</div>
+      <h2 class="s-title">What Can I Offer?</h2>
+    </div>
+    <div class="offer-grid">
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        </div>
+        <h4>BIW Fixture Design</h4>
+        <p>Experienced in designing automotive Body-in-White welding and checking fixtures with high accuracy and manufacturability in mind.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 9V7h-2V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2v-2h-2V9h2zm-4 10H4V5h14v14z"/></svg>
+        </div>
+        <h4>Advanced SPM Design</h4>
+        <p>Designing Special Purpose Machines tailored to specific industrial operations, focusing on efficiency and reliability in the production environment.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93C9.33 17.79 7 14.5 7 11V7.18L12 5z"/></svg>
+        </div>
+        <h4>SolidWorks Proficiency</h4>
+        <p>Primary design tool for all engineering work — from concept models and full assemblies to detailed production drawings and BOMs.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 24 24"><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+        </div>
+        <h4>Automation & PLC Knowledge</h4>
+        <p>CDAC-certified knowledge in PLC programming and industrial automation, enabling well-rounded design decisions for automated manufacturing environments.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98 0-.34-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98 0 .33.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+        </div>
+        <h4>Cross-Domain Adaptability</h4>
+        <p>A career spanning maintenance engineering, upskilling, and design engineering demonstrates the ability to adapt and deliver across engineering domains.</p>
+      </div>
+      <div class="offer-card">
+        <div class="offer-icon">
+          <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        </div>
+        <h4>Automotive Industry Experience</h4>
+        <p>Three years in the automotive sector — deep understanding of two-wheeler systems, components, and the industrial processes behind them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="footer">
+  <div class="container">
+    <div class="section-head">
+      <div class="s-eyebrow">Get in touch</div>
+      <h2 class="s-title">Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-body">
+          Open to design engineering opportunities, collaborations, and technical discussions around BIW fixture design, SPM engineering, and automotive manufacturing. Feel free to reach out via email or connect on LinkedIn.
+        </p>
+        <div class="section-divider" style="margin-top:2rem"></div>
+        <p style="font-size:13px;color:var(--muted);margin-top:1rem;">
+          Based in J&K, India &nbsp;·&nbsp; Available for remote & on-site opportunities
+        </p>
+      </div>
+      <div class="contact-links">
+        <a class="c-link" href="mailto:tuyibyamlekha@gmail.com">
+          <div class="c-link-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div>
+            <div class="c-link-label">Email</div>
+            <div class="c-link-value">tuyibyamlekha@gmail.com</div>
+          </div>
+        </a>
+        <a class="c-link" href="https://github.com/Yamlekha" target="_blank" rel="noopener">
+          <div class="c-link-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2.17c-3.2.69-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.19a11.03 11.03 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.5 3.17-1.19 3.17-1.19.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.26 5.67.42.36.79 1.07.79 2.15v3.19c0 .31.21.67.8.56C20.71 21.38 24 17.08 24 12 24 5.73 18.27.5 12 .5z"/></svg>
+          </div>
+          <div>
+            <div class="c-link-label">GitHub</div>
+            <div class="c-link-value">github.com/Yamlekha</div>
+          </div>
+        </a>
+        <a class="c-link" href="https://www.linkedin.com/in/yamlekha/" target="_blank" rel="noopener">
+          <div class="c-link-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.27V1.73C24 .77 23.21 0 22.22 0z"/></svg>
+          </div>
+          <div>
+            <div class="c-link-label">LinkedIn</div>
+            <div class="c-link-value">linkedin.com/in/yamlekha</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Yamlekha Tuyib · Design Engineer · BIW Fixtures & SPM Design
+</footer>
+
+</body>
 </html>
